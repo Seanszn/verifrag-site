@@ -383,6 +383,9 @@ code { font-family: "IBM Plex Mono", monospace; }
 .diagram-svg text { fill: var(--ink); font-family: "Space Grotesk", sans-serif; font-size: 18px; font-weight: 500; text-anchor: middle; }
 .diagram-svg .diagram-label { font-size: 15px; letter-spacing: 0.08em; text-anchor: start; }
 .diagram-svg .diagram-small { font-size: 16px; }
+.diagram-svg .diagram-title { font-size: 16px; font-weight: 700; text-anchor: start; }
+.diagram-svg .diagram-body { font-size: 14px; font-weight: 500; text-anchor: start; }
+.diagram-svg .diagram-link { font-size: 13px; font-weight: 700; text-anchor: middle; fill: var(--secondary); }
 .diagram-caption { color: var(--muted); }
 
 .timeline { display: grid; gap: 0.75rem; }

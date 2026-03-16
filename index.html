@@ -565,13 +565,116 @@
           <article class="card wide-card">
             <div class="card-header">
               <h3>Entity relationship diagram</h3>
-              <span class="status-pill source">From ERD</span>
+              <span class="status-pill source">From project schema</span>
             </div>
             <button class="diagram-frame zoom-trigger" type="button" aria-label="Expand database entity relationship diagram">
-              <img class="diagram-image" src="context/erd.png" alt="Entity relationship diagram showing users, conversations, messages, interactions, verified claims, contradictions, interaction citations, and conversation state." />
+              <svg class="diagram-svg" viewBox="0 0 1280 820" role="img" aria-labelledby="erd-title">
+                <title id="erd-title">Entity relationship diagram for the VerifRAG relational model</title>
+
+                <path d="M275 150 H420"></path>
+                <path d="M690 150 H830"></path>
+                <path d="M555 210 V330"></path>
+                <path d="M555 210 V520"></path>
+                <path d="M690 405 H820"></path>
+                <path d="M690 595 H840"></path>
+                <path d="M420 405 H280"></path>
+
+                <text x="347" y="138" class="diagram-link">1 to many</text>
+                <text x="760" y="138" class="diagram-link">1 to 1</text>
+                <text x="579" y="287" class="diagram-link">1 to many</text>
+                <text x="579" y="456" class="diagram-link">1 to many</text>
+                <text x="755" y="393" class="diagram-link">1 to many</text>
+                <text x="765" y="583" class="diagram-link">1 to many</text>
+                <text x="350" y="393" class="diagram-link">1 to many</text>
+
+                <rect x="70" y="60" width="205" height="170" rx="22"></rect>
+                <text x="96" y="98" class="diagram-title">users</text>
+                <text x="96" y="126" class="diagram-body">
+                  <tspan x="96" dy="0">PK id</tspan>
+                  <tspan x="96" dy="22">email</tspan>
+                  <tspan x="96" dy="22">password_hash</tspan>
+                  <tspan x="96" dy="22">created_at</tspan>
+                  <tspan x="96" dy="22">owns conversations</tspan>
+                </text>
+
+                <rect x="420" y="60" width="270" height="190" rx="22"></rect>
+                <text x="446" y="98" class="diagram-title">conversations</text>
+                <text x="446" y="126" class="diagram-body">
+                  <tspan x="446" dy="0">PK id</tspan>
+                  <tspan x="446" dy="22">FK user_id</tspan>
+                  <tspan x="446" dy="22">title</tspan>
+                  <tspan x="446" dy="22">created_at</tspan>
+                  <tspan x="446" dy="22">updated_at</tspan>
+                  <tspan x="446" dy="22">top-level research thread</tspan>
+                </text>
+
+                <rect x="830" y="60" width="310" height="170" rx="22"></rect>
+                <text x="856" y="98" class="diagram-title">conversation_state</text>
+                <text x="856" y="126" class="diagram-body">
+                  <tspan x="856" dy="0">PK/FK conversation_id</tspan>
+                  <tspan x="856" dy="22">summary</tspan>
+                  <tspan x="856" dy="22">last_updated_at</tspan>
+                  <tspan x="856" dy="22">snapshot for resume</tspan>
+                </text>
+
+                <rect x="70" y="320" width="210" height="170" rx="22"></rect>
+                <text x="96" y="358" class="diagram-title">messages</text>
+                <text x="96" y="386" class="diagram-body">
+                  <tspan x="96" dy="0">PK id</tspan>
+                  <tspan x="96" dy="22">FK conversation_id</tspan>
+                  <tspan x="96" dy="22">content</tspan>
+                  <tspan x="96" dy="22">created_at</tspan>
+                  <tspan x="96" dy="22">visible chat history</tspan>
+                </text>
+
+                <rect x="420" y="320" width="270" height="190" rx="22"></rect>
+                <text x="446" y="358" class="diagram-title">interactions</text>
+                <text x="446" y="386" class="diagram-body">
+                  <tspan x="446" dy="0">PK id</tspan>
+                  <tspan x="446" dy="22">FK conversation_id</tspan>
+                  <tspan x="446" dy="22">FK user_id</tspan>
+                  <tspan x="446" dy="22">query</tspan>
+                  <tspan x="446" dy="22">response</tspan>
+                  <tspan x="446" dy="22">created_at</tspan>
+                </text>
+
+                <rect x="820" y="320" width="360" height="185" rx="22"></rect>
+                <text x="846" y="358" class="diagram-title">interaction_citations</text>
+                <text x="846" y="386" class="diagram-body">
+                  <tspan x="846" dy="0">PK id</tspan>
+                  <tspan x="846" dy="22">FK interaction_id</tspan>
+                  <tspan x="846" dy="22">document_ref</tspan>
+                  <tspan x="846" dy="22">chunk_ref</tspan>
+                  <tspan x="846" dy="22">source_label fields</tspan>
+                  <tspan x="846" dy="22">created_at</tspan>
+                </text>
+
+                <rect x="330" y="520" width="320" height="210" rx="22"></rect>
+                <text x="356" y="558" class="diagram-title">verified_claims</text>
+                <text x="356" y="586" class="diagram-body">
+                  <tspan x="356" dy="0">PK id</tspan>
+                  <tspan x="356" dy="22">FK interaction_id</tspan>
+                  <tspan x="356" dy="22">claim_text</tspan>
+                  <tspan x="356" dy="22">verdict</tspan>
+                  <tspan x="356" dy="22">confidence</tspan>
+                  <tspan x="356" dy="22">source_citation</tspan>
+                  <tspan x="356" dy="22">claim-level output</tspan>
+                </text>
+
+                <rect x="840" y="535" width="300" height="180" rx="22"></rect>
+                <text x="866" y="573" class="diagram-title">contradictions</text>
+                <text x="866" y="601" class="diagram-body">
+                  <tspan x="866" dy="0">PK id</tspan>
+                  <tspan x="866" dy="22">FK interaction_id</tspan>
+                  <tspan x="866" dy="22">chunk references</tspan>
+                  <tspan x="866" dy="22">score</tspan>
+                  <tspan x="866" dy="22">created_at</tspan>
+                  <tspan x="866" dy="22">conflict evidence</tspan>
+                </text>
+              </svg>
             </button>
             <p class="small-note diagram-caption">
-              The ERD shows a conversation-centered relational model: users own conversations, conversations contain messages and interactions, and each interaction can emit verified claims, contradiction records, and source citations.
+              This diagram shows a conversation-centered relational model: users own conversations, conversations contain messages and interactions, and each interaction can emit verified claims, contradiction records, and source citations.
             </p>
           </article>
         </div>
