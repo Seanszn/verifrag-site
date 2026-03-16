@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="LegalVerifiRAG project site for capstone documentation and technical design.">
-  <title>LegalVerifiRAG | Claim-Level Verification for Legal AI</title>
+  <meta name="description" content="VerifRAG project site for capstone documentation and technical design.">
+  <title>VerifRAG | Claim-Level Verification for Legal AI</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,700&family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -17,9 +17,9 @@
 
   <div class="mobile-topbar">
     <a class="brand mobile-brand" href="#home">
-      <span class="brand-mark">LV</span>
+      <span class="brand-mark">VR</span>
       <span>
-        <strong>LegalVerifiRAG</strong>
+        <strong>VerifRAG</strong>
         <small>Capstone design site</small>
       </span>
     </a>
@@ -30,9 +30,9 @@
     <aside class="sidebar" id="primary-nav">
       <div class="sidebar-panel">
         <a class="brand" href="#home">
-          <span class="brand-mark">LV</span>
+          <span class="brand-mark">VR</span>
           <span>
-            <strong>LegalVerifiRAG</strong>
+            <strong>VerifRAG</strong>
             <small>Claim-level legal AI verification</small>
           </span>
         </a>
@@ -66,6 +66,7 @@
         </div>
 
         <div class="sidebar-links">
+          <a class="mini-link" href="https://github.com/Seanszn/Verifrag" target="_blank" rel="noreferrer">GitHub repository</a>
           <a class="mini-link" href="context/LegalVerifiRAG_Project_Summary.md">Project summary</a>
           <a class="mini-link" href="context/Static%20Website%20Assignment%20Guidelines%20(1).pdf">Assignment guide</a>
           <a class="mini-link" href="context/WebDesign%20Layout.txt">Layout notes</a>
@@ -79,19 +80,17 @@
           <span class="eyebrow">Legal AI capstone</span>
           <h1>Claim-level verification for legal AI that cannot afford to guess.</h1>
           <p class="lead">
-            LegalVerifiRAG is designed to detect hallucinations in AI-generated legal analysis by decomposing responses into atomic claims and verifying each claim against authoritative legal sources.
+            VerifRAG is designed to detect hallucinations in AI-generated legal analysis by decomposing responses into atomic claims and verifying each claim against authoritative legal sources.
           </p>
 
           <div class="hero-actions">
             <a class="button primary" href="#technical-spec">Explore the system</a>
-            <a class="button secondary" href="context/LegalVerifiRAG_Project_Summary.md">Read project summary</a>
-            <a class="button ghost disabled-link" href="#" aria-disabled="true">Add GitHub URL</a>
+            <a class="button secondary" href="https://github.com/Seanszn/Verifrag" target="_blank" rel="noreferrer">View GitHub</a>
           </div>
 
           <div class="status-row">
             <span class="status-pill source">Source-backed</span>
-            <span class="status-pill caution">Poster slot reserved for final deliverable</span>
-            <span class="status-pill missing">Team and media still needed</span>
+            <span class="status-pill source">Team listed</span>
           </div>
         </div>
 
@@ -100,6 +99,7 @@
             <span>Problem</span>
             <strong>Legal AI can cite the right case and still misstate the holding.</strong>
             <p>Commercial legal assistants can look persuasive while remaining unreliable at the claim level.</p>
+            <p><strong>Team:</strong> Sean Collins, Matthew Mankiewicz, Luke Dolan, and Albert Hua.</p>
           </div>
           <div class="metric-grid">
             <article class="metric-card">
@@ -142,7 +142,7 @@
               <span class="status-pill source">From PRD</span>
             </div>
             <p>
-              VerifRAG is a legal research assistant designed to reduce hallucinations in LLM outputs by verifying generated claims against trusted legal documents. The product is aimed primarily at paralegals, with system administrators managing user access and the legal corpus.
+              VerifRAG is a legal research assistant designed to reduce hallucinations in LLM outputs by verifying generated claims against trusted legal documents. The product is aimed primarily at paralegals, who routinely work through large volumes of cases, filings, exhibits, and supporting materials while preparing reliable summaries for attorneys and legal teams.
             </p>
           </article>
 
@@ -178,8 +178,8 @@
                 <tbody>
                   <tr>
                     <td>Paralegal</td>
-                    <td>Uploads legal documents, submits research questions, and reviews verified responses.</td>
-                    <td>Primary user of the system.</td>
+                    <td>Uploads legal documents, submits research questions, reviews verified responses, and turns large document sets into usable legal summaries.</td>
+                    <td>Best-fit primary user because paralegals handle high volumes of relevant documents and need fast, citation-backed summaries they can trust.</td>
                   </tr>
                   <tr>
                     <td>System administrator</td>
@@ -209,6 +209,9 @@
                 </tbody>
               </table>
             </div>
+            <p class="small-note">
+              Paralegals are the strongest audience for the MVP because they sit closest to the document-heavy workflow: organizing evidence, reviewing source material, and producing concise research summaries under time pressure. A claim-level verification system directly supports that work by reducing the risk of inaccurate summaries making it upstream.
+            </p>
           </article>
 
           <article class="card">
@@ -222,9 +225,6 @@
               <li>Luke Dolan (IT)</li>
               <li>Albert Hua (CS)</li>
             </ul>
-            <p>
-              The documents now provide team names. Photos and exact project roles are still needed if you want a full gallery rather than a text list.
-            </p>
           </article>
         </div>
 
@@ -266,27 +266,37 @@
               <span class="status-pill source">From PRD</span>
             </div>
             <button class="diagram-frame zoom-trigger" type="button" aria-label="Expand PRD user flow diagram">
-              <svg class="diagram-svg" viewBox="0 0 900 360" role="img" aria-labelledby="prd-flow-title">
+              <svg class="diagram-svg" viewBox="0 0 960 360" role="img" aria-labelledby="prd-flow-title">
                 <title id="prd-flow-title">PRD flow from login to verified response</title>
-                <rect x="30" y="110" width="150" height="92" rx="18"></rect>
-                <rect x="210" y="110" width="150" height="92" rx="18"></rect>
-                <rect x="390" y="110" width="150" height="92" rx="18"></rect>
-                <rect x="570" y="110" width="150" height="92" rx="18"></rect>
-                <rect x="750" y="110" width="120" height="92" rx="18"></rect>
-                <path d="M180 156 H210"></path>
-                <path d="M360 156 H390"></path>
-                <path d="M540 156 H570"></path>
-                <path d="M720 156 H750"></path>
-                <text x="105" y="150">Login /</text>
-                <text x="105" y="176">account access</text>
-                <text x="285" y="150">Upload docs</text>
-                <text x="285" y="176">or start query</text>
-                <text x="465" y="150">Retrieve</text>
-                <text x="465" y="176">context</text>
-                <text x="645" y="150">Generate +</text>
-                <text x="645" y="176">verify claims</text>
-                <text x="810" y="150">Render</text>
-                <text x="810" y="176">results</text>
+                <rect x="35" y="108" width="150" height="98" rx="18"></rect>
+                <rect x="220" y="108" width="150" height="98" rx="18"></rect>
+                <rect x="405" y="108" width="150" height="98" rx="18"></rect>
+                <rect x="590" y="108" width="150" height="98" rx="18"></rect>
+                <rect x="775" y="108" width="150" height="98" rx="18"></rect>
+                <path d="M185 157 H220"></path>
+                <path d="M370 157 H405"></path>
+                <path d="M555 157 H590"></path>
+                <path d="M740 157 H775"></path>
+                <text x="110" y="145" class="diagram-small">
+                  <tspan x="110" dy="0">Login or</tspan>
+                  <tspan x="110" dy="22">account access</tspan>
+                </text>
+                <text x="295" y="145" class="diagram-small">
+                  <tspan x="295" dy="0">Upload docs</tspan>
+                  <tspan x="295" dy="22">or start query</tspan>
+                </text>
+                <text x="480" y="145" class="diagram-small">
+                  <tspan x="480" dy="0">Retrieve</tspan>
+                  <tspan x="480" dy="22">context</tspan>
+                </text>
+                <text x="665" y="145" class="diagram-small">
+                  <tspan x="665" dy="0">Generate and</tspan>
+                  <tspan x="665" dy="22">verify claims</tspan>
+                </text>
+                <text x="850" y="145" class="diagram-small">
+                  <tspan x="850" dy="0">Render</tspan>
+                  <tspan x="850" dy="22">results</tspan>
+                </text>
               </svg>
             </button>
           </article>
@@ -309,48 +319,73 @@
               <span class="status-pill source">From technical spec</span>
             </div>
             <button class="diagram-frame zoom-trigger" type="button" aria-label="Expand system pipeline diagram">
-              <svg class="diagram-svg" viewBox="0 0 1100 520" role="img" aria-labelledby="pipeline-title">
-                <title id="pipeline-title">LegalVerifiRAG architecture pipeline</title>
-                <rect x="40" y="70" width="1020" height="120" rx="28"></rect>
-                <rect x="40" y="210" width="1020" height="90" rx="28"></rect>
-                <rect x="40" y="320" width="1020" height="140" rx="28"></rect>
+              <svg class="diagram-svg" viewBox="0 0 1120 620" role="img" aria-labelledby="pipeline-title">
+                <title id="pipeline-title">VerifRAG architecture pipeline</title>
+                <rect x="48" y="62" width="1024" height="160" rx="28"></rect>
+                <rect x="48" y="248" width="1024" height="110" rx="28"></rect>
+                <rect x="48" y="390" width="1024" height="180" rx="28"></rect>
 
-                <rect x="90" y="102" width="160" height="56" rx="18"></rect>
-                <rect x="290" y="102" width="160" height="56" rx="18"></rect>
-                <rect x="490" y="102" width="160" height="56" rx="18"></rect>
-                <rect x="690" y="102" width="240" height="56" rx="18"></rect>
+                <rect x="96" y="112" width="160" height="82" rx="18"></rect>
+                <rect x="296" y="112" width="180" height="82" rx="18"></rect>
+                <rect x="516" y="112" width="180" height="82" rx="18"></rect>
+                <rect x="736" y="112" width="288" height="82" rx="18"></rect>
 
-                <rect x="220" y="230" width="660" height="50" rx="20"></rect>
+                <rect x="226" y="272" width="668" height="66" rx="20"></rect>
 
-                <rect x="90" y="350" width="210" height="78" rx="20"></rect>
-                <rect x="330" y="350" width="320" height="78" rx="20"></rect>
-                <rect x="680" y="350" width="280" height="78" rx="20"></rect>
+                <rect x="96" y="430" width="220" height="102" rx="20"></rect>
+                <rect x="356" y="430" width="360" height="102" rx="20"></rect>
+                <rect x="756" y="430" width="268" height="102" rx="20"></rect>
 
-                <path d="M250 130 H290"></path>
-                <path d="M450 130 H490"></path>
-                <path d="M650 130 H690"></path>
-                <path d="M550 190 V210"></path>
-                <path d="M550 300 V320"></path>
+                <path d="M256 153 H296"></path>
+                <path d="M476 153 H516"></path>
+                <path d="M696 153 H736"></path>
+                <path d="M560 222 V248"></path>
+                <path d="M560 358 V390"></path>
 
-                <text x="70" y="95" class="diagram-label">RETRIEVAL</text>
-                <text x="70" y="235" class="diagram-label">GENERATION</text>
-                <text x="70" y="345" class="diagram-label">VERIFICATION LAYER</text>
+                <text x="92" y="94" class="diagram-label">RETRIEVAL</text>
+                <text x="92" y="278" class="diagram-label">GENERATION</text>
+                <text x="92" y="418" class="diagram-label">VERIFICATION LAYER</text>
 
-                <text x="170" y="136">Embed query</text>
-                <text x="370" y="136">ChromaDB search</text>
-                <text x="570" y="136">Context assembly</text>
-                <text x="810" y="136">Authority-aware rerank</text>
+                <text x="176" y="142" class="diagram-small">
+                  <tspan x="176" dy="0">Embed</tspan>
+                  <tspan x="176" dy="22">query</tspan>
+                </text>
+                <text x="386" y="142" class="diagram-small">
+                  <tspan x="386" dy="0">ChromaDB</tspan>
+                  <tspan x="386" dy="22">search</tspan>
+                </text>
+                <text x="606" y="142" class="diagram-small">
+                  <tspan x="606" dy="0">Context</tspan>
+                  <tspan x="606" dy="22">assembly</tspan>
+                </text>
+                <text x="880" y="142" class="diagram-small">
+                  <tspan x="880" dy="0">Authority-aware</tspan>
+                  <tspan x="880" dy="22">rerank</tspan>
+                </text>
 
-                <text x="550" y="262">Local Llama generation with strict citation formatting</text>
+                <text x="560" y="292" class="diagram-small">
+                  <tspan x="560" dy="0">Local Llama generation</tspan>
+                  <tspan x="560" dy="22">with strict citation</tspan>
+                  <tspan x="560" dy="22">formatting</tspan>
+                </text>
 
-                <text x="195" y="385">Claim decomposition</text>
-                <text x="195" y="409">Regex + spaCy + eyecite</text>
+                <text x="206" y="464" class="diagram-small">
+                  <tspan x="206" dy="0">Claim decomposition</tspan>
+                  <tspan x="206" dy="22">Regex + spaCy</tspan>
+                  <tspan x="206" dy="22">+ eyecite</tspan>
+                </text>
 
-                <text x="490" y="385">Evidence aggregation + contradiction checks</text>
-                <text x="490" y="409">Authority weighting + verdict classification</text>
+                <text x="536" y="464" class="diagram-small">
+                  <tspan x="536" dy="0">Evidence aggregation</tspan>
+                  <tspan x="536" dy="22">Contradiction checks</tspan>
+                  <tspan x="536" dy="22">Verdict classification</tspan>
+                </text>
 
-                <text x="820" y="385">Citation verification</text>
-                <text x="820" y="409">Traffic-light confidence output</text>
+                <text x="890" y="464" class="diagram-small">
+                  <tspan x="890" dy="0">Citation verification</tspan>
+                  <tspan x="890" dy="22">Traffic-light</tspan>
+                  <tspan x="890" dy="22">confidence output</tspan>
+                </text>
               </svg>
             </button>
           </article>
@@ -526,47 +561,97 @@
           </article>
         </div>
 
+        <div class="card-grid">
+          <article class="card wide-card">
+            <div class="card-header">
+              <h3>Entity relationship diagram</h3>
+              <span class="status-pill source">From ERD</span>
+            </div>
+            <button class="diagram-frame zoom-trigger" type="button" aria-label="Expand database entity relationship diagram">
+              <img class="diagram-image" src="context/erd.png" alt="Entity relationship diagram showing users, conversations, messages, interactions, verified claims, contradictions, interaction citations, and conversation state." />
+            </button>
+            <p class="small-note diagram-caption">
+              The ERD shows a conversation-centered relational model: users own conversations, conversations contain messages and interactions, and each interaction can emit verified claims, contradiction records, and source citations.
+            </p>
+          </article>
+        </div>
+
         <div class="card-grid two-up">
           <article class="card">
             <div class="card-header">
-              <h3>Core data model</h3>
-              <span class="status-pill source">From summary</span>
+              <h3>Relational schema in the ERD</h3>
+              <span class="status-pill source">From ERD</span>
             </div>
-            <pre><code class="language-python">LegalDocument {
-  id, doc_type, case_name, citation,
-  court, court_level, date_decided,
-  holding, full_text, chunks[]
-}
-
-LegalClaim {
-  text, claim_type, source_span,
-  confidence, cited_authority,
-  claimed_content,
-  requires_case_lookup,
-  requires_statute_lookup
-}
-
-VerificationResult {
-  claim, verdict, confidence,
-  best_passage, citation_exists,
-  actual_holding, explanation,
-  needs_attorney_review
-}</code></pre>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Entity</th>
+                    <th>Key fields shown</th>
+                    <th>Purpose</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>users</code></td>
+                    <td><code>id</code>, <code>email</code>, <code>password_hash</code>, <code>created_at</code></td>
+                    <td>Authentication and ownership root for the rest of the relational data.</td>
+                  </tr>
+                  <tr>
+                    <td><code>conversations</code></td>
+                    <td><code>id</code>, <code>user_id</code>, <code>title</code>, <code>created_at</code>, <code>updated_at</code></td>
+                    <td>Stores the top-level research thread a user is working in.</td>
+                  </tr>
+                  <tr>
+                    <td><code>messages</code></td>
+                    <td><code>id</code>, <code>conversation_id</code>, <code>content</code>, <code>created_at</code></td>
+                    <td>Preserves the visible chat history inside a conversation.</td>
+                  </tr>
+                  <tr>
+                    <td><code>interactions</code></td>
+                    <td><code>id</code>, <code>conversation_id</code>, <code>user_id</code>, <code>query</code>, <code>response</code>, <code>created_at</code></td>
+                    <td>Captures each request-response cycle that the verification pipeline analyzes.</td>
+                  </tr>
+                  <tr>
+                    <td><code>verified_claims</code></td>
+                    <td><code>interaction_id</code>, <code>claim_text</code>, <code>verdict</code>, <code>confidence</code>, <code>source_citation</code></td>
+                    <td>Stores claim-level verification output for a generated response.</td>
+                  </tr>
+                  <tr>
+                    <td><code>contradictions</code></td>
+                    <td><code>interaction_id</code>, chunk references, <code>score</code>, <code>created_at</code></td>
+                    <td>Tracks evidence passages that conflict strongly enough to require review.</td>
+                  </tr>
+                  <tr>
+                    <td><code>interaction_citations</code></td>
+                    <td><code>interaction_id</code>, document reference, chunk reference, source label fields, <code>created_at</code></td>
+                    <td>Associates a response with the exact authorities and evidence chunks it cited.</td>
+                  </tr>
+                  <tr>
+                    <td><code>conversation_state</code></td>
+                    <td><code>conversation_id</code>, <code>summary</code>, <code>last_updated_at</code></td>
+                    <td>Keeps a resumable summary of the current thread without recomputing the full history.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </article>
 
           <article class="card">
             <div class="card-header">
-              <h3>SQLite domain tables</h3>
-              <span class="status-pill source">From summary</span>
+              <h3>Relationship rules visible in the ERD</h3>
+              <span class="status-pill source">From ERD</span>
             </div>
-            <pre><code class="language-sql">users
-matters
-interactions
-verified_claims
-saved_responses
-contradictions</code></pre>
+            <ul class="feature-list">
+              <li>One <code>user</code> can own many <code>conversations</code> and perform many <code>interactions</code>.</li>
+              <li>One <code>conversation</code> contains many <code>messages</code> and many <code>interactions</code>.</li>
+              <li>One <code>conversation</code> has a single <code>conversation_state</code> record for the current summary snapshot.</li>
+              <li>One <code>interaction</code> can produce many <code>verified_claims</code>.</li>
+              <li>One <code>interaction</code> can surface many <code>contradictions</code> when evidence chunks conflict.</li>
+              <li>One <code>interaction</code> can reference many <code>interaction_citations</code> to preserve source traceability.</li>
+            </ul>
             <p class="small-note">
-              These tables support authentication, matter-scoped history, saved research artifacts, and contradiction evidence.
+              This ERD is stronger than the earlier generic model because it shows how verification output is persisted around a real user workflow instead of only listing abstract domain objects.
             </p>
           </article>
         </div>
@@ -742,9 +827,9 @@ contradictions</code></pre>
       <section class="section" id="management">
         <div class="section-heading">
           <span class="eyebrow">Management</span>
-          <h2>Timeline, governance, and the remaining inputs needed to finish the presentation layer.</h2>
+          <h2>Timeline, governance, and project delivery planning.</h2>
           <p>
-            The source summary provides an implementation timeline and multiple ethical constraints. The assignment also expects project management visibility, ethics coverage, and explicit team information.
+            The source summary provides an implementation timeline and multiple ethical constraints. This section focuses on project management visibility, ethics coverage, and delivery planning.
           </p>
         </div>
 
@@ -781,10 +866,6 @@ contradictions</code></pre>
               <li>Auditability is supported through saved interactions, evidence passages, and verdict explanations.</li>
               <li>Deployment decisions must balance privacy, quality, cost, and offline capability.</li>
             </ul>
-            <div class="placeholder-panel">
-              <strong>IRB / CITI status</strong>
-              <p>In Progress or Not Applicable - update with the team's actual status.</p>
-            </div>
           </article>
         </div>
 
@@ -801,35 +882,11 @@ contradictions</code></pre>
               <li>SQLite write concurrency is limited, though still appropriate for most firm-scale use.</li>
             </ul>
           </article>
-
-          <article class="card">
-            <div class="card-header">
-              <h3>Missing final assets</h3>
-              <span class="status-pill missing">Needs follow-up</span>
-            </div>
-            <ul class="feature-list">
-              <li>Team names, roles, and headshots.</li>
-              <li>GitHub repository URL and published Figma link.</li>
-              <li>Poster image or PDF for the final showcase slot.</li>
-              <li>Any final screenshots of the running Streamlit UI or evaluation dashboards.</li>
-              <li>A named persona and user flow details beyond the technical system description.</li>
-            </ul>
-          </article>
-        </div>
-
-        <div class="poster-slot">
-          <div>
-            <span class="eyebrow">Reserved space</span>
-            <h3>Final poster or showcase image goes here.</h3>
-            <p>The assignment notes that the static website will also host the project poster front and center by the end of the semester.</p>
-          </div>
-          <div class="poster-placeholder">Poster / final hero asset</div>
         </div>
       </section>
 
       <footer class="site-footer">
-        <p>Built as a static site so it can be deployed directly to GitHub Pages without a build step.</p>
-        <p class="small-note">Source documents used: assignment guide PDF, layout notes TXT, and LegalVerifiRAG project summary.</p>
+        <p class="small-note">Source documents used: assignment guide PDF, layout notes TXT, and VerifRAG project summary.</p>
       </footer>
     </main>
   </div>
