@@ -573,19 +573,19 @@
 
                 <path d="M275 150 H420"></path>
                 <path d="M690 150 H830"></path>
-                <path d="M555 210 V330"></path>
-                <path d="M555 210 V520"></path>
+                <path d="M470 250 V285 H280 V320"></path>
+                <path d="M555 250 V320"></path>
                 <path d="M690 405 H820"></path>
-                <path d="M690 595 H840"></path>
-                <path d="M420 405 H280"></path>
+                <path d="M555 510 V560"></path>
+                <path d="M690 415 H760 V620 H820"></path>
 
                 <text x="347" y="138" class="diagram-link">1 to many</text>
                 <text x="760" y="138" class="diagram-link">1 to 1</text>
-                <text x="579" y="287" class="diagram-link">1 to many</text>
-                <text x="579" y="456" class="diagram-link">1 to many</text>
+                <text x="382" y="300" class="diagram-link">1 to many</text>
+                <text x="579" y="300" class="diagram-link">1 to many</text>
                 <text x="755" y="393" class="diagram-link">1 to many</text>
-                <text x="765" y="583" class="diagram-link">1 to many</text>
-                <text x="350" y="393" class="diagram-link">1 to many</text>
+                <text x="585" y="546" class="diagram-link">1 to many</text>
+                <text x="770" y="610" class="diagram-link">1 to many</text>
 
                 <rect x="70" y="60" width="205" height="170" rx="22"></rect>
                 <text x="96" y="98" class="diagram-title">users</text>
@@ -649,27 +649,27 @@
                   <tspan x="846" dy="22">created_at</tspan>
                 </text>
 
-                <rect x="330" y="520" width="320" height="210" rx="22"></rect>
-                <text x="356" y="558" class="diagram-title">verified_claims</text>
-                <text x="356" y="586" class="diagram-body">
-                  <tspan x="356" dy="0">PK id</tspan>
-                  <tspan x="356" dy="22">FK interaction_id</tspan>
-                  <tspan x="356" dy="22">claim_text</tspan>
-                  <tspan x="356" dy="22">verdict</tspan>
-                  <tspan x="356" dy="22">confidence</tspan>
-                  <tspan x="356" dy="22">source_citation</tspan>
-                  <tspan x="356" dy="22">claim-level output</tspan>
+                <rect x="395" y="560" width="320" height="210" rx="22"></rect>
+                <text x="421" y="598" class="diagram-title">verified_claims</text>
+                <text x="421" y="626" class="diagram-body">
+                  <tspan x="421" dy="0">PK id</tspan>
+                  <tspan x="421" dy="22">FK interaction_id</tspan>
+                  <tspan x="421" dy="22">claim_text</tspan>
+                  <tspan x="421" dy="22">verdict</tspan>
+                  <tspan x="421" dy="22">confidence</tspan>
+                  <tspan x="421" dy="22">source_citation</tspan>
+                  <tspan x="421" dy="22">claim-level output</tspan>
                 </text>
 
-                <rect x="840" y="535" width="300" height="180" rx="22"></rect>
-                <text x="866" y="573" class="diagram-title">contradictions</text>
-                <text x="866" y="601" class="diagram-body">
-                  <tspan x="866" dy="0">PK id</tspan>
-                  <tspan x="866" dy="22">FK interaction_id</tspan>
-                  <tspan x="866" dy="22">chunk references</tspan>
-                  <tspan x="866" dy="22">score</tspan>
-                  <tspan x="866" dy="22">created_at</tspan>
-                  <tspan x="866" dy="22">conflict evidence</tspan>
+                <rect x="820" y="560" width="300" height="180" rx="22"></rect>
+                <text x="846" y="598" class="diagram-title">contradictions</text>
+                <text x="846" y="626" class="diagram-body">
+                  <tspan x="846" dy="0">PK id</tspan>
+                  <tspan x="846" dy="22">FK interaction_id</tspan>
+                  <tspan x="846" dy="22">chunk references</tspan>
+                  <tspan x="846" dy="22">score</tspan>
+                  <tspan x="846" dy="22">created_at</tspan>
+                  <tspan x="846" dy="22">conflict evidence</tspan>
                 </text>
               </svg>
             </button>
@@ -759,73 +759,6 @@
           </article>
         </div>
 
-        <div class="card-grid">
-          <article class="card wide-card">
-            <div class="card-header">
-              <h3>API specification draft</h3>
-              <span class="status-pill caution">Inferred from named endpoints</span>
-            </div>
-            <p class="small-note">
-              The project summary names the core API routes but does not define final request and response payloads. The examples below are presentation-ready drafts that should be confirmed against implementation.
-            </p>
-            <div class="api-grid">
-              <div class="api-card">
-                <h4><code>POST /api/auth</code></h4>
-                <pre><code class="language-json">{
-  "username": "attorney_a",
-  "password": "secure-password"
-}</code></pre>
-                <pre><code class="language-json">{
-  "token": "jwt-or-session-token",
-  "user": {
-    "id": "u_101",
-    "username": "attorney_a"
-  }
-}</code></pre>
-              </div>
-              <div class="api-card">
-                <h4><code>POST /api/query</code></h4>
-                <pre><code class="language-json">{
-  "matter_id": "m_12",
-  "query": "Can the exclusionary rule apply here?",
-  "deployment_mode": "local",
-  "force_local": true
-}</code></pre>
-                <pre><code class="language-json">{
-  "response": "Draft legal analysis...",
-  "claims": [
-    {
-      "text": "Miranda applies to custodial interrogation.",
-      "verdict": "verified",
-      "confidence": 0.94
-    }
-  ],
-  "sources": ["384 U.S. 436"]
-}</code></pre>
-              </div>
-              <div class="api-card">
-                <h4><code>GET /api/history</code></h4>
-                <pre><code class="language-json">{
-  "matter_id": "m_12"
-}</code></pre>
-                <pre><code class="language-json">{
-  "items": [
-    {
-      "interaction_id": "i_77",
-      "query": "Exclusionary rule memo",
-      "cost": 0.0008
-    }
-  ]
-}</code></pre>
-              </div>
-            </div>
-            <div class="error-strip">
-              <span><code>400</code> invalid request payload</span>
-              <span><code>401</code> authentication required</span>
-              <span><code>500</code> retrieval or verification pipeline failure</span>
-            </div>
-          </article>
-        </div>
       </section>
 
       <section class="section" id="verification">
