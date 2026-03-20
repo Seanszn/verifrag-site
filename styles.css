@@ -13,6 +13,7 @@
   --radius-lg: 22px;
   --radius-md: 16px;
   --max-width: 1480px;
+  --box-gap: 1rem;
 }
 
 * { box-sizing: border-box; }
@@ -162,7 +163,7 @@ button, input, textarea, select { font: inherit; }
 .hero {
   display: grid;
   grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
-  gap: 1.4rem;
+  gap: var(--box-gap);
   min-height: 72vh;
   align-items: stretch;
 }
@@ -171,8 +172,10 @@ button, input, textarea, select { font: inherit; }
 .hero-panel {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 }
+
+.hero-copy { justify-content: flex-start; }
+.hero-panel { justify-content: flex-start; }
 
 .eyebrow {
   display: inline-block;
@@ -186,7 +189,7 @@ button, input, textarea, select { font: inherit; }
 
 h1, h2, h3, h4 { margin: 0; line-height: 1.08; }
 h1, h2 { font-family: "Newsreader", serif; font-weight: 700; letter-spacing: -0.02em; }
-h1 { max-width: 11ch; font-size: clamp(3rem, 6vw, 5.8rem); }
+h1 { max-width: 11ch; font-size: clamp(1.5rem, 3vw, 2.9rem); }
 h2 { max-width: 15ch; font-size: clamp(2.15rem, 3.5vw, 3.6rem); }
 h3 { font-size: 1.28rem; }
 h4 { font-size: 1rem; }
@@ -198,6 +201,11 @@ h4 { font-size: 1rem; }
   font-size: 1.05rem;
 }
 
+.hero-description {
+  max-width: 42ch;
+  margin-top: 1rem;
+}
+
 .hero-actions,
 .status-row,
 .error-strip {
@@ -207,6 +215,7 @@ h4 { font-size: 1rem; }
 }
 
 .hero-actions { margin: 2rem 0 1rem; }
+.hero-panel .hero-actions { margin: 1rem 0 0; }
 
 .button {
   display: inline-flex;
@@ -243,10 +252,11 @@ h4 { font-size: 1rem; }
 .algorithm-grid,
 .api-grid {
   display: grid;
-  gap: 1rem;
+  gap: var(--box-gap);
 }
 
-.metric-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 1rem; }
+.hero > .metric-grid { grid-column: 1 / -1; margin-top: 0; }
+.metric-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 0; }
 
 .metric-card,
 .card,
@@ -274,6 +284,14 @@ h4 { font-size: 1rem; }
   color: #fffdf8;
 }
 
+.team-lines {
+  margin-top: 1rem;
+}
+
+.team-lines p {
+  margin: 0;
+}
+
 .metric-card strong {
   display: block;
   margin: 0.4rem 0 0.5rem;
@@ -285,15 +303,20 @@ h4 { font-size: 1rem; }
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
-  margin-bottom: 1.3rem;
+  margin-bottom: var(--box-gap);
 }
 
 .section-heading p { max-width: 72ch; margin: 0; }
+
+.section > :is(.card-grid, .metric-grid, .algorithm-grid, .api-grid, .timeline, .poster-slot) + :is(.card-grid, .metric-grid, .algorithm-grid, .api-grid, .timeline, .poster-slot) {
+  margin-top: var(--box-gap);
+}
 
 .card-grid { grid-template-columns: repeat(12, minmax(0, 1fr)); }
 .card { padding: 1.2rem; grid-column: span 6; }
 .wide-card { grid-column: 1 / -1; }
 .two-up .card { grid-column: span 6; }
+.two-up .wide-card { grid-column: 1 / -1; }
 
 .card-header {
   display: flex;
@@ -312,8 +335,8 @@ h4 { font-size: 1rem; }
 
 .team-placeholder {
   display: flex;
-  gap: 0.75rem;
-  margin: 1rem 0;
+  gap: var(--box-gap);
+  margin: var(--box-gap) 0;
 }
 
 .avatar-shell,
@@ -330,7 +353,7 @@ h4 { font-size: 1rem; }
 .placeholder-panel { padding: 1rem; background: linear-gradient(135deg, rgba(216, 232, 231, 0.3), rgba(255, 255, 255, 0.9)); }
 .prototype-panel { min-height: 170px; }
 
-.table-wrap { overflow-x: auto; margin-top: 0.35rem; }
+.table-wrap { overflow-x: auto; margin-top: var(--box-gap); }
 table { width: 100%; border-collapse: collapse; min-width: 520px; }
 th, td { padding: 0.85rem 0.7rem; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
 th { color: var(--muted); font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.08em; }
@@ -351,14 +374,14 @@ pre {
 
 code { font-family: "IBM Plex Mono", monospace; }
 
-.algorithm-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); margin-top: 0.4rem; }
+.algorithm-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); margin-top: var(--box-gap); }
 .algorithm-card { padding: 1rem; background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(242, 244, 246, 0.96)); }
 .algorithm-card p { margin-top: 0.5rem; font-size: 0.92rem; }
 
-.api-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 1rem; }
+.api-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: var(--box-gap); }
 .api-card { padding: 1rem; }
 .api-card h4 { margin-bottom: 0.35rem; }
-.error-strip { margin-top: 1rem; color: var(--muted); font-size: 0.9rem; }
+.error-strip { margin-top: var(--box-gap); color: var(--muted); font-size: 0.9rem; }
 
 .diagram-frame {
   width: 100%;
@@ -388,11 +411,11 @@ code { font-family: "IBM Plex Mono", monospace; }
 .diagram-svg .diagram-link { font-size: 13px; font-weight: 700; text-anchor: middle; fill: var(--secondary); }
 .diagram-caption { color: var(--muted); }
 
-.timeline { display: grid; gap: 0.75rem; }
+.timeline { display: grid; gap: var(--box-gap); }
 .timeline div {
   display: grid;
   grid-template-columns: 140px 1fr;
-  gap: 0.8rem;
+  gap: var(--box-gap);
   padding: 0.9rem 1rem;
   border-radius: 16px;
   background: rgba(31, 92, 100, 0.05);
@@ -403,10 +426,10 @@ code { font-family: "IBM Plex Mono", monospace; }
 .poster-slot {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
-  gap: 1rem;
+  gap: var(--box-gap);
   align-items: center;
   padding: 1.25rem;
-  margin-top: 1rem;
+  margin-top: var(--box-gap);
   background: linear-gradient(135deg, rgba(20, 33, 47, 0.98), rgba(181, 82, 47, 0.82));
   color: #f8f5ef;
 }
@@ -460,6 +483,7 @@ code { font-family: "IBM Plex Mono", monospace; }
   .sidebar-panel { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
   .brand, .sidebar-note { grid-column: 1 / -1; }
   .hero { grid-template-columns: 1fr; min-height: auto; }
+  .metric-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .algorithm-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .api-grid { grid-template-columns: 1fr; }
   .poster-slot { grid-template-columns: 1fr; }
@@ -478,7 +502,7 @@ code { font-family: "IBM Plex Mono", monospace; }
 }
 
 @media (max-width: 620px) {
-  h1 { font-size: clamp(2.6rem, 12vw, 4rem); }
+  h1 { font-size: clamp(1.3rem, 6vw, 2rem); }
   h2 { font-size: clamp(2rem, 8vw, 3rem); }
   .hero-actions .button,
   .status-row .status-pill { width: 100%; justify-content: center; }

@@ -44,6 +44,7 @@
         <nav class="section-nav" aria-label="Section navigation">
           <a href="#home">Home</a>
           <a href="#prd">PRD</a>
+          <a href="#ui-spec">UI / Streamlit GUI</a>
           <a href="#technical-spec">Technical Specification</a>
           <a href="#design">Detailed Design</a>
           <a href="#verification">Verification</a>
@@ -77,19 +78,10 @@
         <div class="hero-copy">
           <span class="eyebrow">Legal AI capstone</span>
           <h1>Claim-level verification for legal AI that cannot afford to guess.</h1>
-          <p class="lead">
+          <p class="lead hero-description">
             VerifRAG is designed to detect hallucinations in AI-generated legal analysis by decomposing responses into atomic claims and verifying each claim against authoritative legal sources.
           </p>
 
-          <div class="hero-actions">
-            <a class="button primary" href="#technical-spec">Explore the system</a>
-            <a class="button secondary" href="https://github.com/Seanszn/Verifrag" target="_blank" rel="noreferrer">View GitHub</a>
-          </div>
-
-          <div class="status-row">
-            <span class="status-pill source">Source-backed</span>
-            <span class="status-pill source">Team listed</span>
-          </div>
         </div>
 
         <div class="hero-panel">
@@ -97,30 +89,41 @@
             <span>Problem</span>
             <strong>Legal AI can cite the right case and still misstate the holding.</strong>
             <p>Commercial legal assistants can look persuasive while remaining unreliable at the claim level.</p>
-            <p><strong>Team:</strong> Sean Collins, Matthew Mankiewicz, Luke Dolan, and Albert Hua.</p>
+            <div class="team-lines">
+              <p><strong>Team:</strong></p>
+              <p>Sean Collins</p>
+              <p>Matthew Mankiewicz</p>
+              <p>Luke Dolan</p>
+              <p>Albert Hua</p>
+            </div>
           </div>
-          <div class="metric-grid">
-            <article class="metric-card">
-              <span>Detection goal</span>
-              <strong>&gt;80%</strong>
-              <p>Hallucination detection target with a stretch goal above 90%.</p>
-            </article>
-            <article class="metric-card">
-              <span>Verification output</span>
-              <strong>5 algorithms</strong>
-              <p>Retrieval, decomposition, contradiction checks, verdicting, and citation verification.</p>
-            </article>
-            <article class="metric-card">
-              <span>Privacy stance</span>
-              <strong>Local-first</strong>
-              <p>Designed to keep confidential legal data on firm-controlled hardware.</p>
-            </article>
-            <article class="metric-card">
-              <span>UI target</span>
-              <strong>Fast + auditable</strong>
-              <p>Annotated output with inline verification badges, sources, and confidence scores.</p>
-            </article>
+          <div class="hero-actions">
+            <a class="button primary" href="#technical-spec">Explore the system</a>
+            <a class="button secondary" href="https://github.com/Seanszn/Verifrag" target="_blank" rel="noreferrer">View GitHub</a>
           </div>
+        </div>
+
+        <div class="metric-grid">
+          <article class="metric-card">
+            <span>Detection goal</span>
+            <strong>&gt;80%</strong>
+            <p>Hallucination detection target with a stretch goal above 90%.</p>
+          </article>
+          <article class="metric-card">
+            <span>Verification output</span>
+            <strong>5 algorithms</strong>
+            <p>Retrieval, decomposition, contradiction checks, verdicting, and citation verification.</p>
+          </article>
+          <article class="metric-card">
+            <span>Privacy stance</span>
+            <strong>Local-first</strong>
+            <p>Designed to keep confidential legal data on firm-controlled hardware.</p>
+          </article>
+          <article class="metric-card">
+            <span>UI target</span>
+            <strong>Fast + auditable</strong>
+            <p>Annotated output with inline verification badges, sources, and confidence scores.</p>
+          </article>
         </div>
       </section>
 
@@ -285,6 +288,114 @@
                 </text>
               </svg>
             </button>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="ui-spec">
+        <div class="section-heading">
+          <span class="eyebrow">UI / Streamlit GUI</span>
+          <h2>Interface structure and styling direction defined in the Streamlit GUI spec.</h2>
+          <p>
+            This section is sourced from <code>verifrag_streamlit_gui_spec.md</code>. It describes the intended user flow, page structure, visual language, and Streamlit-specific implementation patterns for the VerifRAG interface.
+          </p>
+        </div>
+
+        <div class="card-grid two-up">
+          <article class="card">
+            <div class="card-header">
+              <h3>Core UX model</h3>
+              <span class="status-pill source">From GUI spec</span>
+            </div>
+            <ul class="feature-list">
+              <li>Four main pages: Login, Home, Upload, and Response / Query Workspace.</li>
+              <li>The product is document-centered: sign in, upload files, submit a query, and review generated responses with session history.</li>
+              <li>Navigation is intentionally simple so legal users can move through the workflow without UI clutter.</li>
+              <li>Reusable header behavior keeps orientation consistent across the app.</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <h3>Visual style direction</h3>
+              <span class="status-pill source">From GUI spec</span>
+            </div>
+            <ul class="feature-list">
+              <li>Minimal, professional presentation with a neutral light background and dark header bar.</li>
+              <li>White or very light gray cards and panels over a soft gray page surface.</li>
+              <li>Rounded buttons, subtle borders, and clear vertical spacing rather than dense dashboard styling.</li>
+              <li>Centered primary actions and sparse layouts to keep attention on uploads, queries, and evidence-backed output.</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="card-grid">
+          <article class="card wide-card">
+            <div class="card-header">
+              <h3>Page-by-page interface requirements</h3>
+              <span class="status-pill source">From GUI spec</span>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Page</th>
+                    <th>Primary purpose</th>
+                    <th>Key UI elements</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Login</td>
+                    <td>Authenticate the user before the research workflow begins.</td>
+                    <td>Dark top bar, centered sign-in form, masked password input, and a Register action in the header.</td>
+                  </tr>
+                  <tr>
+                    <td>Home</td>
+                    <td>Present the two main post-authentication actions.</td>
+                    <td>Sparse page with two large centered buttons: Query and Upload Documents, plus a Log Out action.</td>
+                  </tr>
+                  <tr>
+                    <td>Upload</td>
+                    <td>Collect legal source files before querying.</td>
+                    <td>Centered upload panel, drag-and-drop or manual file selection, file list feedback, and Submit action.</td>
+                  </tr>
+                  <tr>
+                    <td>Response Workspace</td>
+                    <td>Support the ongoing RAG conversation and evidence review.</td>
+                    <td>Two-column layout with previous sessions on the left, transcript/output panel on the right, and a bottom query input row with stop and submit controls.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+        </div>
+
+        <div class="card-grid two-up">
+          <article class="card">
+            <div class="card-header">
+              <h3>Streamlit implementation pattern</h3>
+              <span class="status-pill source">From GUI spec</span>
+            </div>
+            <ul class="feature-list">
+              <li>Use native Streamlit widgets first, with only limited custom CSS for polish.</li>
+              <li>Build the header as a reusable component with branding on the left and context-specific actions on the right.</li>
+              <li>Prefer a multipage app under <code>pages/</code>, with a session-state page switcher as an acceptable fallback.</li>
+              <li>Keep the code modular with separate components for the header, upload panel, session list, and chat panel.</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <h3>State and usability requirements</h3>
+              <span class="status-pill source">From GUI spec</span>
+            </div>
+            <ul class="feature-list">
+              <li><code>st.session_state</code> should hold authentication state, current page, uploaded files, chat sessions, and the active session index.</li>
+              <li>The upload flow should support multiple files and preserve file metadata across reruns.</li>
+              <li>The response workspace should preserve transcript history, render readable message blocks, and keep the query input anchored near the bottom.</li>
+              <li>The spec explicitly allows practical improvements such as upload status messages, query spinners, clearer empty states, and better chat readability.</li>
+            </ul>
           </article>
         </div>
       </section>
@@ -908,7 +1019,7 @@
       </section>
 
       <footer class="site-footer">
-        <p class="small-note">Source documents used: assignment guide PDF, layout notes TXT, and VerifRAG project summary.</p>
+        <p class="small-note">Source documents used: VerifRAG project summary, system design + PRD, technical specification, and Streamlit GUI spec.</p>
       </footer>
     </main>
   </div>
